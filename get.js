@@ -25,6 +25,7 @@ import baseGet from './.internal/baseGet.js'
  * // => 'default'
  */
 function get(object, path, defaultValue) {
+  //先判断是否为空,如果是空则返回 undefined
   const result = object == null ? undefined : baseGet(object, path)
   return result === undefined ? defaultValue : result
 }

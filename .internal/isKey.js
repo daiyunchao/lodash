@@ -13,6 +13,8 @@ const reIsPlainProp = /^\w*$/
  * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
  */
 function isKey(value, object) {
+  // value = a[0].b.c
+  // object = { 'a': [{ 'b': { 'c': 3 } }] }
   if (Array.isArray(value)) {
     return false
   }
@@ -20,6 +22,15 @@ function isKey(value, object) {
   if (type == 'number' || type == 'boolean' || value == null || isSymbol(value)) {
     return true
   }
+
+  //使用 || 或是 && 消除 if
+  //reIsPlainProp 是否单一属性 "name"
+  //reIsDeepProp 是否包含了 .[]这种特殊字符串
+  // value in Object value 是否直接是 Object的属性
+  //in 的这种方式只能判断一层
+  //var obj={age:18,struct:{"name":"zhangsan"}}
+  //"struct" in obj ==>true
+  //"struct.name" in obj ==> false
   return reIsPlainProp.test(value) || !reIsDeepProp.test(value) ||
     (object != null && value in Object(object))
 }

@@ -15,6 +15,7 @@ function toKey(value) {
     return value
   }
   const result = `${value}`
+  // 判断是否是-0:(1 / value) == -INFINITY)
   return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result
 }
 
