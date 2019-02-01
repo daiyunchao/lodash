@@ -12,7 +12,7 @@
  * @param {number} [end=array.length] The end position. A negative index will be treated as an offset from the end.
  * @returns {Array} Returns the slice of `array`.
  * @example
- *
+ * 获取数组的一部分
  * var array = [1, 2, 3, 4]
  *
  * _.slice(array, 2)
@@ -33,10 +33,13 @@ function slice(array, start, end) {
   if (end < 0) {
     end += length
   }
+  //>>> 0 无符号右移 保证值为正整数
   length = start > end ? 0 : ((end - start) >>> 0)
   start >>>= 0
 
   let index = -1
+
+  //从原数组中获取一部分元素,并构建成新的数组
   const result = new Array(length)
   while (++index < length) {
     result[index] = array[index + start]

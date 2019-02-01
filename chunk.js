@@ -26,12 +26,31 @@ function chunk(array, size) {
   }
   let index = 0
   let resIndex = 0
+  //先计算外层数组的元素个数
+  //Math.ceil 向上取整
+  //new Array(number) 声明一个长度为number的新数组
   const result = new Array(Math.ceil(length / size))
 
   while (index < length) {
+
+    //slice方法: 在不需要原来数组的基础上,将数组中的部分元素防到一个新的数组中
     result[resIndex++] = slice(array, index, (index += size))
   }
   return result
+}
+
+//实现了 我的chunk方法
+//我实现的方法 问题: 1.修改了原数组 2.参数没有考虑周全
+function my_chunk(arr,item_count){
+	if(!Array.isArray(arr)){
+		throw new Error("arr args is not array")
+	}
+	let arr2=[];
+	while (arr.length>0){
+		let newArr=[];
+		newArr=arr.splice(0,item_count);
+		arr2.push(newArr)
+	}
 }
 
 export default chunk
