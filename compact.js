@@ -18,7 +18,6 @@ function compact(array) {
   if (array == null) {
     return result
   }
-
   for (const value of array) {
     if (value) {
       result[resIndex++] = value
@@ -26,5 +25,38 @@ function compact(array) {
   }
   return result
 }
+
+//我的实现方式
+function my_compact(arr) {
+  if (!arr) {
+    return [];
+  }
+  if (!Array.isArray(arr)) {
+    throw new Error("arr is not arrary")
+  }
+  let retArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    let item = arr[i]
+    if (item) {
+      retArr.push(item)
+    }
+  }
+  return retArr;
+}
+
+//对比:
+//使用for of 直接从数组中获取值
+// for 获取的是下标,要得到值还得 let element=arr[i]
+//for of 遍历数组要简单一些
+
+// for of 的其他用法
+let map =new Map();
+map.set("name","zhangsan")
+map.set("age",19)
+for(let [key,value] of map){
+  console.log("key==>",key);
+  console.log("value==>",value);
+}
+
 
 export default compact

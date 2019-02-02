@@ -25,6 +25,7 @@ function baseFlatten(array, depth, predicate, isStrict, result) {
         // Recursively flatten arrays (susceptible to call stack limits).
         baseFlatten(value, depth - 1, predicate, isStrict, result)
       } else {
+        //批量push一个数组中的值到另外一个数组
         result.push(...value)
       }
     } else if (!isStrict) {
