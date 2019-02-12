@@ -21,6 +21,26 @@ import isArrayLikeObject from './isArrayLikeObject.js'
  * difference([2, 1], [2, 3])
  * // => [1]
  */
+
+ //我的方法:
+function my_difference(source_arr, ...args) {
+  let temp_arr = [];
+  let difference_arr = [];
+  if (!Array.isArray(source_arr)) throw new Error("first argument is not array");
+  for (let value of args) {
+    if (Array.isArray(value)) {
+      temp_arr.push(...value);
+    } else {
+      temp_arr.push(value)
+    }
+  }
+  let _set = new Set(temp_arr);
+  for (let value of source_arr) {
+    !_set.has(value) && difference_arr.push(value);
+  }
+  return difference_arr;
+}
+
 function difference(array, ...values) {
   return isArrayLikeObject(array)
     ? baseDifference(array, baseFlatten(values, 1, isArrayLikeObject, true))
